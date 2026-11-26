@@ -1,0 +1,189 @@
+{
+  "patient_id": "SYN-0001",
+  "description": "Ground truth for the fixed synthetic bundle SYN-0001 (7 documents). Planted issues must be detected with the stated evidence state (API code); decoys must NOT produce any conflict issue. Checked by: cd backend, python -m medusa.evaluate",
+  "findings": {
+    "FND-MED-warfarin": {
+      "state": "REVIEW_REQUIRED",
+      "issues": [
+        "medication_status_conflict",
+        "unexplained_discharge_omission"
+      ],
+      "planted": "Held on 2026-03-12 (progress note), listed Active on 2026-03-14 (imported list), no documented restart, absent from discharge list. Anticoagulant, so high risk. A restart is documented later (clinic follow-up, 2026-03-29); it does not resolve the earlier conflict or the discharge gap."
+    },
+    "FND-MED-metformin": {
+      "state": "CONFLICTING_EVIDENCE",
+      "issues": [
+        "medication_dose_discrepancy"
+      ],
+      "planted": "500 mg twice daily (admission, as brand Glycomet; discharge) vs 1000 mg twice daily (imported list). No documented dose change."
+    },
+    "FND-MED-amlodipine": {
+      "state": "INSUFFICIENT_EVIDENCE",
+      "issues": [
+        "unexplained_discharge_omission"
+      ],
+      "planted": "Listed on admission, absent from discharge medications, no documented stop."
+    },
+    "FND-MED-atorvastatin": {
+      "state": "EVIDENCE_SUPPORTED",
+      "issues": [],
+      "decoy": "Brand 'Atorva' on admission must normalise to atorvastatin and match the other two lists."
+    },
+    "FND-MED-pantoprazole": {
+      "state": "EVIDENCE_SUPPORTED",
+      "issues": [],
+      "decoy": "IV twice daily, then oral once daily, then 20 mg (follow-up); every change is documented. Must not be a dose discrepancy."
+    },
+    "FND-ALG-drug-allergies": {
+      "state": "REVIEW_REQUIRED",
+      "issues": [
+        "allergy_conflict"
+      ],
+      "planted": "Penicillin (rash) on admission vs NKDA on discharge. Allergy findings are high risk."
+    },
+    "FND-DX-chronic-kidney-disease": {
+      "state": "CONFLICTING_EVIDENCE",
+      "issues": [
+        "diagnosis_status_conflict"
+      ],
+      "planted": "'No known chronic kidney disease' (progress note) vs 'Chronic kidney disease stage 3' (discharge)."
+    },
+    "FND-DX-pneumonia": {
+      "state": "EVIDENCE_SUPPORTED",
+      "issues": [],
+      "decoy": "Possible on admission, then absent on X-ray and discharge. Diagnostic evolution, not a conflict."
+    },
+    "FND-DX-type-2-diabetes-mellitus": {
+      "state": "EVIDENCE_SUPPORTED",
+      "issues": []
+    },
+    "FND-DX-hypertension": {
+      "state": "EVIDENCE_SUPPORTED",
+      "issues": []
+    },
+    "FND-DX-atrial-fibrillation": {
+      "state": "EVIDENCE_SUPPORTED",
+      "issues": []
+    },
+    "FND-DX-upper-gastrointestinal-bleed": {
+      "state": "EVIDENCE_SUPPORTED",
+      "issues": [],
+      "decoy": "Event date (hospital day 3 = 2026-03-12) differs from discharge document date 2026-03-15."
+    },
+    "FND-DX-tuberculosis": {
+      "state": "EVIDENCE_SUPPORTED",
+      "issues": [],
+      "decoy": "Historical (treated in 2015), year precision only."
+    },
+    "FND-DX-stroke": {
+      "state": "EVIDENCE_SUPPORTED",
+      "issues": [],
+      "decoy": "Negated ('No history of stroke'). Must be recorded as absent, not present."
+    },
+    "FND-FH-breast-cancer": {
+      "state": "EVIDENCE_SUPPORTED",
+      "issues": [],
+      "decoy": "Family history (mother). Must never be attributed to the patient."
+    },
+    "FND-REF-endoscopy-report": {
+      "state": "INSUFFICIENT_EVIDENCE",
+      "issues": [
+        "missing_referenced_record"
+      ],
+      "planted": "Progress note says 'see endoscopy report'; no endoscopy report in the bundle."
+    },
+    "FND-REF-histopathology-report": {
+      "state": "INSUFFICIENT_EVIDENCE",
+      "issues": [
+        "missing_referenced_record"
+      ],
+      "planted": "Discharge summary says histopathology report is pending; not in the bundle."
+    }
+  },
+  "date_checks": [
+    {
+      "entity": "fever",
+      "event_date": "2026-03-07",
+      "approximate": true,
+      "basis": "relative"
+    },
+    {
+      "entity": "melena",
+      "event_date": "2026-03-11",
+      "approximate": true,
+      "basis": "relative"
+    },
+    {
+      "entity": "hemoglobin",
+      "event_date": "2026-03-11",
+      "document_date": "2026-03-12",
+      "basis": "document_header"
+    },
+    {
+      "entity": "tuberculosis",
+      "event_date": "2015-01-01",
+      "precision": "year"
+    },
+    {
+      "entity": "dizziness",
+      "event_date": null,
+      "raw_text": "since last week",
+      "basis": "relative",
+      "note": "Ambiguous date: written, but there is no fixed anchor, so it must stay unresolved."
+    },
+    {
+      "entity": "warfarin",
+      "action": "restarted",
+      "event_date": "2026-03-29",
+      "basis": "explicit"
+    }
+  ],
+  "documents": 7,
+  "scenarios": [
+    {
+      "id": "chronology",
+      "title": "Chronology across documents",
+      "expect": "Timeline in date order from 2015 (year only) to the 2026-03-29 follow-up."
+    },
+    {
+      "id": "event_vs_document_date",
+      "title": "Event date differs from document date",
+      "expect": "Haemoglobin collected 2026-03-11, report dated 2026-03-12; placed by collection date."
+    },
+    {
+      "id": "medication_change",
+      "title": "Medication change over time",
+      "expect": "Pantoprazole IV, then oral, then reduced, each change documented (MED-CHANGE-01, no discrepancy); warfarin listed, held, restarted."
+    },
+    {
+      "id": "cross_source_discrepancy",
+      "title": "Discrepancy across two sources",
+      "expect": "Chronic kidney disease absent (progress note) vs present (discharge): CONFLICTING_EVIDENCE."
+    },
+    {
+      "id": "missing_reference",
+      "title": "Missing referenced document",
+      "expect": "Endoscopy and histopathology reports referenced but absent: INSUFFICIENT_EVIDENCE."
+    },
+    {
+      "id": "ambiguous_date",
+      "title": "Ambiguous date",
+      "expect": "\"Dizziness since last week\" kept as written, not resolved to a date, and listed for review."
+    },
+    {
+      "id": "supported_claim",
+      "title": "Source-supported claim",
+      "expect": "Atorvastatin (brand Atorva) consistent across three lists, every claim verified: EVIDENCE_SUPPORTED."
+    },
+    {
+      "id": "review_required",
+      "title": "Claim requiring review",
+      "expect": "Warfarin held then listed active, high-risk anticoagulant: REVIEW_REQUIRED by GATE-03."
+    },
+    {
+      "id": "insufficient_evidence",
+      "title": "Insufficient evidence",
+      "expect": "Amlodipine on admission, absent at discharge, no stop documented: INSUFFICIENT_EVIDENCE."
+    }
+  ]
+}

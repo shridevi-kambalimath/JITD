@@ -1,0 +1,28 @@
+DOCUMENT TYPE: Admission Note
+DOCUMENT ID: DOC-ADM-301
+PATIENT ID: SYN-0003
+DOCUMENT DATE: 2026-05-10
+ADMISSION DATE: 2026-05-10
+SYNTHETIC RECORD: Fictional patient created for software demonstration only.
+---
+CHIEF COMPLAINT:
+Fever and abdominal pain for approximately 2 days prior to admission.
+
+HISTORY OF PRESENT ILLNESS:
+Synthetic 61-year-old patient admitted for evaluation.
+
+PAST MEDICAL HISTORY:
+Type 2 diabetes mellitus.
+Chronic kidney disease stage 3.
+Hypertension.
+
+ALLERGIES:
+Sulfonamide (rash).
+
+HOME MEDICATIONS:
+Metformin 1000 mg orally twice daily.
+Lantus 20 units subcutaneously at night.
+Amlodipine 10 mg orally once daily.
+
+ASSESSMENT:
+Sepsis.

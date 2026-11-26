@@ -1,0 +1,86 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/jetbrains-mono";
+
+/*
+  MEDUSA-X design tokens. Every colour, font, radius and shadow used in the UI comes from here.
+
+  Palette: warm neutral canvas, near-black ink, one restrained brand colour (deep teal).
+  Status colours are semantic and shared by document states, evidence states and review states:
+    supported    green     evidence-supported, processed, reviewed
+    conflicting  amber     conflicting evidence
+    insufficient indigo    insufficient evidence
+    review       red       review required, failed, flagged
+    pending      slate     uploaded, processing, pending review, not yet available
+*/
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --color-canvas: #f6f6f4;
+  --color-surface: #ffffff;
+  --color-subtle: #f0f0ed;
+  --color-line: #e3e3de;
+  --color-line-strong: #cfcfc8;
+
+  --color-ink: #15171c;
+  --color-ink-muted: #565b68;
+  --color-ink-faint: #646a76; /* 4.5:1 or better on surface, canvas, subtle and brand-soft (WCAG AA) */
+
+  --color-brand: #1d4b5c;
+  --color-brand-hover: #163a48;
+  --color-brand-soft: #e5eef1;
+  --color-brand-line: #b9cfd6;
+
+  --color-supported: #17663f;
+  --color-supported-soft: #e6f3eb;
+  --color-supported-line: #b5dcc4;
+
+  --color-conflicting: #94480a;
+  --color-conflicting-soft: #fcf0e1;
+  --color-conflicting-line: #f0cfa6;
+
+  --color-insufficient: #34478a;
+  --color-insufficient-soft: #e9ecf8;
+  --color-insufficient-line: #c3cbec;
+
+  --color-review: #9f2424;
+  --color-review-soft: #fbe9e9;
+  --color-review-line: #f0c2c2;
+
+  --color-pending: #4b5563;
+  --color-pending-soft: #eef0f2;
+  --color-pending-line: #d5d9de;
+
+  --radius-sm: 3px;
+  --radius-md: 5px;
+  --radius-lg: 7px;
+
+  --shadow-panel: 0 1px 2px rgb(21 23 28 / 0.05);
+  --shadow-raised: 0 4px 16px -4px rgb(21 23 28 / 0.12), 0 1px 2px rgb(21 23 28 / 0.06);
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+  body {
+    @apply bg-canvas font-sans text-[14px] leading-relaxed text-ink antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand;
+  }
+  ::selection {
+    @apply bg-brand-soft text-ink;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,15 @@
+DOCUMENT TYPE: Clinic Follow-up Note
+DOCUMENT ID: DOC-FUP-001
+PATIENT ID: SYN-0001
+DOCUMENT DATE: 2026-03-29
+VISIT DATE: 2026-03-29
+SYNTHETIC RECORD: Fictional patient created for software demonstration only.
+---
+INTERVAL HISTORY:
+Seen two weeks after discharge.
+Dizziness since last week.
+No further black stools.
+
+MEDICATIONS:
+Warfarin 5 mg orally once daily restarted on 2026-03-29 after clinical review.
+Pantoprazole 20 mg orally once daily (reduced from 40 mg).

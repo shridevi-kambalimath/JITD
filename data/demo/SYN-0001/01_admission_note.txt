@@ -1,0 +1,35 @@
+DOCUMENT TYPE: Admission Note
+DOCUMENT ID: DOC-ADM-001
+PATIENT ID: SYN-0001
+DOCUMENT DATE: 2026-03-10
+ADMISSION DATE: 2026-03-10
+AUTHOR ROLE: Admitting physician (synthetic)
+SYNTHETIC RECORD: Fictional patient created for software demonstration only.
+---
+CHIEF COMPLAINT:
+Fever and productive cough for approximately 3 days prior to admission.
+
+HISTORY OF PRESENT ILLNESS:
+Synthetic 68-year-old patient admitted for evaluation.
+
+PAST MEDICAL HISTORY:
+Type 2 diabetes mellitus.
+Hypertension.
+Atrial fibrillation.
+History of tuberculosis, treated in 2015.
+No history of stroke.
+
+FAMILY HISTORY:
+Mother had breast cancer.
+
+ALLERGIES:
+Penicillin (rash).
+
+HOME MEDICATIONS:
+Warfarin 5 mg orally once daily.
+Glycomet 500 mg orally twice daily.
+Atorva 20 mg orally at night.
+Amlodipine 5 mg orally once daily.
+
+ASSESSMENT:
+Possible pneumonia; chest X-ray requested.

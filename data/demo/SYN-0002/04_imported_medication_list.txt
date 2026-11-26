@@ -1,0 +1,12 @@
+DOCUMENT TYPE: Imported Medication List
+DOCUMENT ID: DOC-MED-202
+PATIENT ID: SYN-0002
+DOCUMENT DATE: 2026-04-04
+SOURCE SYSTEM: External pharmacy record (synthetic import)
+SYNTHETIC RECORD: Fictional patient created for software demonstration only.
+---
+MEDICATION LIST:
+Apixaban 5 mg orally twice daily - Active.
+Aspirin 150 mg orally once daily - Active.
+Amlodipine 5 mg orally once daily - Active.
+Atorvastatin 40 mg orally at night - Active.

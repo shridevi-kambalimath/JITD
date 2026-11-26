@@ -1,0 +1,11 @@
+DOCUMENT TYPE: Endoscopy Report
+DOCUMENT ID: DOC-END-001
+PATIENT ID: SYN-0002
+DOCUMENT DATE: 2026-03-12
+PROCEDURE DATE: 2026-03-12
+SYNTHETIC RECORD: Fictional patient created for software demonstration only.
+---
+PROCEDURE:
+Upper GI endoscopy performed on 2026-03-12.
+FINDINGS:
+Synthetic finding text for demonstration only.

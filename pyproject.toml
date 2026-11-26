@@ -1,0 +1,10 @@
+[project]
+name = "medusa-x"
+version = "0.1.0"
+description = "Evidence-driven clinical record reconstruction (hackathon prototype, synthetic data only)"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+pythonpath = ["backend"]
+testpaths = ["tests"]
+addopts = "-q"

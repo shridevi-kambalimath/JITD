@@ -1,0 +1,14 @@
+DOCUMENT TYPE: Clinic Follow-up Note
+DOCUMENT ID: DOC-FUP-302
+PATIENT ID: SYN-0003
+DOCUMENT DATE: 2026-05-30
+VISIT DATE: 2026-05-30
+SYNTHETIC RECORD: Fictional patient created for software demonstration only.
+---
+INTERVAL HISTORY:
+Seen two weeks after discharge.
+Abdominal pain since last week.
+No fever.
+
+MEDICATIONS:
+Metformin 500 mg orally twice daily restarted on 2026-05-30 after review of kidney function.

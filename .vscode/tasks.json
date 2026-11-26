@@ -1,0 +1,251 @@
+{
+  "version": "2.0.0",
+  "windows": {
+    "options": {
+      "shell": {
+        "executable": "cmd.exe",
+        "args": [
+          "/d",
+          "/c"
+        ]
+      }
+    }
+  },
+  "tasks": [
+    {
+      "label": "Setup: backend",
+      "detail": "Create .venv, install Python packages, create .env from .env.example if missing",
+      "type": "shell",
+      "command": "(if not exist .venv python -m venv .venv) && .venv\\Scripts\\python.exe -m pip install --upgrade pip && .venv\\Scripts\\python.exe -m pip install -r requirements-dev.txt && (if not exist .env copy .env.example .env)",
+      "linux": {
+        "command": "([ -d .venv ] || python3 -m venv .venv) && .venv/bin/python -m pip install --upgrade pip && .venv/bin/python -m pip install -r requirements-dev.txt && ([ -f .env ] || cp .env.example .env)"
+      },
+      "osx": {
+        "command": "([ -d .venv ] || python3 -m venv .venv) && .venv/bin/python -m pip install --upgrade pip && .venv/bin/python -m pip install -r requirements-dev.txt && ([ -f .env ] || cp .env.example .env)"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Setup: frontend",
+      "detail": "Install exact frontend packages from package-lock.json",
+      "type": "shell",
+      "command": "npm ci",
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Setup: everything",
+      "detail": "Run once after cloning or unzipping",
+      "dependsOn": [
+        "Setup: backend",
+        "Setup: frontend"
+      ],
+      "dependsOrder": "sequence",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run: backend",
+      "detail": "FastAPI on http://127.0.0.1:8000 (host, port, reload from .env)",
+      "type": "shell",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe -m medusa",
+      "linux": {
+        "command": "${workspaceFolder}/.venv/bin/python -m medusa",
+        "options": {
+          "cwd": "${workspaceFolder}/backend"
+        }
+      },
+      "osx": {
+        "command": "${workspaceFolder}/.venv/bin/python -m medusa",
+        "options": {
+          "cwd": "${workspaceFolder}/backend"
+        }
+      },
+      "options": {
+        "cwd": "${workspaceFolder}/backend"
+      },
+      "isBackground": true,
+      "presentation": {
+        "group": "servers",
+        "panel": "dedicated"
+      },
+      "problemMatcher": {
+        "owner": "medusa-backend",
+        "pattern": {
+          "regexp": "^__never_matches__$"
+        },
+        "background": {
+          "activeBegins": true,
+          "beginsPattern": "Uvicorn running|Will watch",
+          "endsPattern": "Application startup complete"
+        }
+      }
+    },
+    {
+      "label": "Demo: single process",
+      "detail": "Builds the UI, then one server serves UI and API on http://127.0.0.1:8000 (stop any running backend first)",
+      "type": "shell",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe -m medusa",
+      "linux": {
+        "command": "${workspaceFolder}/.venv/bin/python -m medusa",
+        "options": {
+          "cwd": "${workspaceFolder}/backend",
+          "env": {
+            "MEDUSA_SERVE_FRONTEND": "true",
+            "MEDUSA_RELOAD": "false"
+          }
+        }
+      },
+      "osx": {
+        "command": "${workspaceFolder}/.venv/bin/python -m medusa",
+        "options": {
+          "cwd": "${workspaceFolder}/backend",
+          "env": {
+            "MEDUSA_SERVE_FRONTEND": "true",
+            "MEDUSA_RELOAD": "false"
+          }
+        }
+      },
+      "options": {
+        "cwd": "${workspaceFolder}/backend",
+        "env": {
+          "MEDUSA_SERVE_FRONTEND": "true",
+          "MEDUSA_RELOAD": "false"
+        }
+      },
+      "isBackground": true,
+      "presentation": {
+        "group": "demo",
+        "panel": "dedicated"
+      },
+      "problemMatcher": {
+        "owner": "medusa-demo",
+        "pattern": {
+          "regexp": "^__never_matches__$"
+        },
+        "background": {
+          "activeBegins": true,
+          "beginsPattern": "Uvicorn running|Will watch",
+          "endsPattern": "Application startup complete"
+        }
+      },
+      "dependsOn": [
+        "Check: frontend typecheck and build"
+      ]
+    },
+    {
+      "label": "Run: frontend",
+      "detail": "Vite dev server on http://127.0.0.1:5173, proxies /api to the backend",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
+      "isBackground": true,
+      "presentation": {
+        "group": "servers",
+        "panel": "dedicated"
+      },
+      "problemMatcher": {
+        "owner": "medusa-frontend",
+        "pattern": {
+          "regexp": "^__never_matches__$"
+        },
+        "background": {
+          "activeBegins": true,
+          "beginsPattern": "VITE",
+          "endsPattern": "ready in"
+        }
+      }
+    },
+    {
+      "label": "Run: MEDUSA-X",
+      "detail": "Backend and frontend side by side; then open http://127.0.0.1:5173",
+      "dependsOn": [
+        "Run: backend",
+        "Run: frontend"
+      ],
+      "dependsOrder": "parallel",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Test: backend",
+      "type": "shell",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe -m pytest",
+      "linux": {
+        "command": "${workspaceFolder}/.venv/bin/python -m pytest"
+      },
+      "osx": {
+        "command": "${workspaceFolder}/.venv/bin/python -m pytest"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Test: frontend",
+      "type": "shell",
+      "command": "npm test",
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Check: frontend typecheck and build",
+      "type": "shell",
+      "command": "npm run build",
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
+      "problemMatcher": [
+        "$tsc"
+      ]
+    },
+    {
+      "label": "Evaluate: ground truth",
+      "detail": "Load the demo bundle into a temporary database, analyse it and score every finding, date and scenario against data/demo/expected.json",
+      "type": "shell",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe -m medusa.evaluate",
+      "linux": {
+        "command": "${workspaceFolder}/.venv/bin/python -m medusa.evaluate"
+      },
+      "osx": {
+        "command": "${workspaceFolder}/.venv/bin/python -m medusa.evaluate"
+      },
+      "options": {
+        "cwd": "${workspaceFolder}/backend"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Test: all",
+      "dependsOn": [
+        "Test: backend",
+        "Test: frontend",
+        "Check: frontend typecheck and build"
+      ],
+      "dependsOrder": "sequence",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "QA: everything",
+      "detail": "Backend tests, frontend tests, typecheck and build, then the ground-truth evaluation (docs/QA.md, step A4)",
+      "dependsOn": [
+        "Test: backend",
+        "Test: frontend",
+        "Check: frontend typecheck and build",
+        "Evaluate: ground truth"
+      ],
+      "dependsOrder": "sequence",
+      "problemMatcher": []
+    }
+  ]
+}

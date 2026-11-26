@@ -1,0 +1,24 @@
+DOCUMENT TYPE: Discharge Summary
+DOCUMENT ID: DOC-DIS-202
+PATIENT ID: SYN-0002
+DOCUMENT DATE: 2026-04-07
+ADMISSION DATE: 2026-04-02
+DISCHARGE DATE: 2026-04-07
+SYNTHETIC RECORD: Fictional patient created for software demonstration only.
+---
+HOSPITAL COURSE:
+Myocardial infarction was ruled out.
+Heart failure was managed and shortness of breath resolved.
+
+DISCHARGE DIAGNOSES:
+Heart failure.
+Hypertension.
+Atrial fibrillation.
+
+ALLERGIES:
+No known drug allergies.
+
+DISCHARGE MEDICATIONS:
+Apixaban 5 mg orally twice daily restarted on 2026-04-06.
+Aspirin 75 mg orally once daily.
+Atorvastatin 40 mg orally at night.

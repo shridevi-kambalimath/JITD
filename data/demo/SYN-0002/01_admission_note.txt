@@ -1,0 +1,30 @@
+DOCUMENT TYPE: Admission Note
+DOCUMENT ID: DOC-ADM-201
+PATIENT ID: SYN-0002
+DOCUMENT DATE: 2026-04-02
+ADMISSION DATE: 2026-04-02
+SYNTHETIC RECORD: Fictional patient created for software demonstration only.
+---
+CHIEF COMPLAINT:
+Shortness of breath for approximately 2 days prior to admission.
+
+HISTORY OF PRESENT ILLNESS:
+Synthetic 74-year-old patient admitted for evaluation.
+
+PAST MEDICAL HISTORY:
+Heart failure.
+Hypertension.
+Atrial fibrillation.
+History of myocardial infarction in 2019.
+
+ALLERGIES:
+Codeine (vomiting).
+
+HOME MEDICATIONS:
+Eliquis 5 mg orally twice daily.
+Aspirin 75 mg orally once daily.
+Amlodipine 5 mg orally once daily.
+Atorvastatin 40 mg orally at night.
+
+ASSESSMENT:
+Possible myocardial infarction; echocardiogram requested.

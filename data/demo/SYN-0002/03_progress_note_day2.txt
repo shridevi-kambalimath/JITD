@@ -1,0 +1,19 @@
+DOCUMENT TYPE: Progress Note
+DOCUMENT ID: DOC-PRG-202
+PATIENT ID: SYN-0002
+DOCUMENT DATE: 2026-04-03
+HOSPITAL DAY: 2
+SYNTHETIC RECORD: Fictional patient created for software demonstration only.
+---
+SUBJECTIVE:
+Shortness of breath improving.
+
+ASSESSMENT:
+Myocardial infarction ruled out.
+Heart failure.
+
+PLAN:
+Apixaban held.
+Started enoxaparin 80 mg subcutaneously twice daily.
+Started paracetamol 1 g orally four times daily.
+Echocardiogram performed on 2026-04-03; see echocardiogram report for findings.

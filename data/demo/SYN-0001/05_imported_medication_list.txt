@@ -1,0 +1,11 @@
+DOCUMENT TYPE: Imported Medication List
+DOCUMENT ID: DOC-MED-IMP
+PATIENT ID: SYN-0001
+DOCUMENT DATE: 2026-03-14
+SOURCE SYSTEM: External pharmacy record (synthetic import)
+SYNTHETIC RECORD: Fictional patient created for software demonstration only.
+---
+MEDICATION LIST:
+Warfarin 5 mg orally once daily - Active.
+Metformin 1000 mg orally twice daily - Active.
+Atorvastatin 20 mg orally at night - Active.

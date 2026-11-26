@@ -1,0 +1,13 @@
+DOCUMENT TYPE: Laboratory Report
+DOCUMENT ID: DOC-LAB-001
+PATIENT ID: SYN-0001
+DOCUMENT DATE: 2026-03-12
+COLLECTION DATE: 2026-03-11
+REPORTED DATE: 2026-03-12
+SYNTHETIC RECORD: Fictional patient created for software demonstration only.
+---
+RESULTS:
+Hemoglobin: 7.9 g/dL (L) [reference 13.0-17.0]
+Potassium: 4.2 mmol/L [reference 3.5-5.1]
+Creatinine: 1.9 mg/dL (H) [reference 0.7-1.3]
+INR: 3.8 (H) [reference 0.8-1.2]
